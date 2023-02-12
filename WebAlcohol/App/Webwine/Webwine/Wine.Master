@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Wine.master.cs" Inherits="Webwine.Wine" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Xudolly</title>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <div class="info-base">
+                <p>
+                    Địa chỉ: 25 Đ. Hồ Tùng Mậu, Phường Nguyễn Thái Bình, Quận 1, Tp.HCM
+                </p>
+                <p>Email: xudolly@gmail.com</p>
+                <p>sđt: 0933388829</p>
+            </div>
+            <div class="seach">
+                <img src="/images/images-public/xudolly_free-file.png" alt="logo" />
+                <div class="form">
+                    <input type="text" placeholder="Tìm kiếm" />                    
+                    <button type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <button type="button" id="order" onclick="cart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                <button type="button" id="login" onclick="account()"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/user/home.aspx">Home</a></li>
+                    <li><a href="/user/champagne.aspx">Champagne</a></li>
+                    <li><a href="/user/whisky.aspx">Whisky</a></li>
+                    <li><a href="/user/cognac.aspx">Cognac</a></li>
+                    <li><a href="/user/vodka.aspx">Vodka</a></li>
+                    <li><a href="/user/ltb.aspx">Liqueur/Tequila/Bia</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+            <div class="footer-top">
+                <div class="logo-info">
+                    <a href="">
+                        <p><i class="fa fa-facebook" aria-hidden="true"></i></p>
+                    </a>
+                    <a href="">
+                        <p><i class="fa fa-twitter" aria-hidden="true"></i></p>
+                    </a>
+                    <a href="">
+                        <p><i class="fa fa-pinterest-p" aria-hidden="true"></i></p>
+                    </a>
+                </div>
+                <div class="info">
+                    <img src="/images/images-public/xudolly_free-file.png" alt="" />
+                    <div class="info-child">
+                        <h3>Về chúng tôi</h3>
+                        <p>Giới thiệu</p>
+                        <p>Điều khoảng sử dụng</p>
+                    </div>
+                    <div class="info-child">
+                        <h3>Thông tin liên hệ</h3>
+                        <p>Sài Gòn - Hà Nội</p>
+                        <p>
+                            Chi nhánh HCM: 25 Đ. Hồ Tùng Mậu, Phường Nguyễn Thái Bình, Quận 1,
+              Tp.HCM.
+                        </p>
+                        <p>Chi nhánh Hà Nội: 20 Phan Kế Bính, Ba Đình, Hà Nội.</p>
+                        <p>Email: xudolly@gmail.com</p>
+                        <p>Hotline: 0933388829</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <h2>THƯỞNG THỨC CÓ TRÁCH NHIỆM</h2>
+                <p>
+                    Các sản phẩm rượu không dành cho người dưới 18 tuổi và phụ nữ đang
+          mang thai. Bản quyền © 2022 Xudolly Hiện thân của sự cống hiến không
+          ngừng để đạt tới sự hoàn hảo
+                </p>
+            </div>
+        </footer>
+    </form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+    src="/js/javascript.js"
+    type="text/javascript"
+    language="javascript"></script>
+<script
+    src="/js/jquery.js"
+    type="text/javascript"
+    language="javascript"></script>
+</html>

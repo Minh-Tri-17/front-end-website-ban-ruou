@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Webwine" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ELITEBOOK2560P\SQLEXPRESS;Initial Catalog=Webwine;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebwineConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="Username" Type="System.String" DbType="Char(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="Char(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_P" Member="Order_Ps">
+    <Type Name="Order_P">
+      <Column Name="IdOr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Order_P" Member="Product" ThisKey="IdP" OtherKey="IdP" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Origin" Member="Origins">
+    <Type Name="Origin">
+      <Column Name="IdO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Origin_Product" Member="Products" ThisKey="IdO" OtherKey="IdO" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="IdP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Images" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="capacity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="concnetration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IdTp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Order_P" Member="Order_Ps" ThisKey="IdP" OtherKey="IdP" Type="Order_P" />
+      <Association Name="Origin_Product" Member="Origin" ThisKey="IdO" OtherKey="IdO" Type="Origin" IsForeignKey="true" />
+      <Association Name="Special_Product" Member="Special" ThisKey="IdS" OtherKey="IdS" Type="Special" IsForeignKey="true" />
+      <Association Name="Trademark_Product" Member="Trademark" ThisKey="IdT" OtherKey="IdT" Type="Trademark" IsForeignKey="true" />
+      <Association Name="Type_Product_Product" Member="Type_Product" ThisKey="IdTp" OtherKey="IdTp" Type="Type_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Special" Member="Specials">
+    <Type Name="Special">
+      <Column Name="IdS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Special_Product" Member="Products" ThisKey="IdS" OtherKey="IdS" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trademark" Member="Trademarks">
+    <Type Name="Trademark">
+      <Column Name="IdT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Images" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IdTp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Trademark_Product" Member="Products" ThisKey="IdT" OtherKey="IdT" Type="Product" />
+      <Association Name="Type_Product_Trademark" Member="Type_Product" ThisKey="IdTp" OtherKey="IdTp" Type="Type_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type_Product" Member="Type_Products">
+    <Type Name="Type_Product">
+      <Column Name="IdTp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Type_Product_Product" Member="Products" ThisKey="IdTp" OtherKey="IdTp" Type="Product" />
+      <Association Name="Type_Product_Trademark" Member="Trademarks" ThisKey="IdTp" OtherKey="IdTp" Type="Trademark" />
+    </Type>
+  </Table>
+  <Function Name="dbo.insertdata" Method="insertdata">
+    <Parameter Name="NameP" Parameter="nameP" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ImageP" Parameter="imageP" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="CostP" Parameter="costP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="capacityP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="concnetrationP" Type="System.Double" DbType="Float" />
+    <Parameter Name="TrademarkP" Parameter="trademarkP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="OriginP" Parameter="originP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SpecialP" Parameter="specialP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Type_ProductP" Parameter="type_ProductP" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.login_account" Method="login_account">
+    <Parameter Name="username" Type="System.String" DbType="Char(100)" />
+    <Parameter Name="password" Type="System.String" DbType="Char(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.regist_account" Method="regist_account">
+    <Parameter Name="username" Type="System.String" DbType="Char(100)" />
+    <Parameter Name="password" Type="System.String" DbType="Char(100)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="phone" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
